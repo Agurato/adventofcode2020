@@ -6,16 +6,15 @@ import (
 
 // Day1 Day 1
 func Day1() {
-	fmt.Println(day1Part1())
-	fmt.Println(day1Part2())
-}
-
-func day1Part1() int {
 	values, err := ReadLinesToInt("inputs/day1.txt")
 	if err != nil {
 		panic(err)
 	}
+	fmt.Println(day1Part1(values))
+	fmt.Println(day1Part2(values))
+}
 
+func day1Part1(values []int) int {
 	valuesLen := len(values)
 	for index1 := 0; index1 < valuesLen-1; index1++ {
 		value1 := values[index1]
@@ -29,12 +28,7 @@ func day1Part1() int {
 	return 0
 }
 
-func day1Part2() int {
-	values, err := ReadLinesToInt("inputs/day1.txt")
-	if err != nil {
-		panic(err)
-	}
-
+func day1Part2(values []int) int {
 	valuesLen := len(values)
 	for index1 := 0; index1 < valuesLen-2; index1++ {
 		value1 := values[index1]
