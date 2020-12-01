@@ -16,8 +16,9 @@ func day1Part1() int {
 		panic(err)
 	}
 
-	for index1, value1 := range values {
-		for index2 := index1; index2 < len(values); index2++ {
+	for index1 := 0; index1 < len(values)-1; index1++ {
+		value1 := values[index1]
+		for index2 := index1 + 1; index2 < len(values); index2++ {
 			value2 := values[index2]
 			if value1+value2 == 2020 {
 				return value1 * value2
