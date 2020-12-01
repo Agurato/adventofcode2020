@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 )
 
 // Day1 Day 1
@@ -12,15 +11,14 @@ func Day1() {
 }
 
 func day1Part1() int {
-	lines, err := ReadLines("inputs/day1.txt")
+	values, err := ReadLinesToInt("inputs/day1.txt")
 	if err != nil {
 		panic(err)
 	}
 
-	for _, line1 := range lines {
-		value1, _ := strconv.Atoi(line1)
-		for _, line2 := range lines {
-			value2, _ := strconv.Atoi(line2)
+	for index1, value1 := range values {
+		for index2 := index1; index2 < len(values); index2++ {
+			value2 := values[index2]
 			if value1+value2 == 2020 {
 				return value1 * value2
 			}
@@ -30,17 +28,16 @@ func day1Part1() int {
 }
 
 func day1Part2() int {
-	lines, err := ReadLines("inputs/day1.txt")
+	values, err := ReadLinesToInt("inputs/day1.txt")
 	if err != nil {
 		panic(err)
 	}
 
-	for _, line1 := range lines {
-		value1, _ := strconv.Atoi(line1)
-		for _, line2 := range lines {
-			value2, _ := strconv.Atoi(line2)
-			for _, line3 := range lines {
-				value3, _ := strconv.Atoi(line3)
+	for index1, value1 := range values {
+		for index2 := index1 + 1; index2 < len(values)-1; index2++ {
+			value2 := values[index2]
+			for index3 := index2 + 1; index3 < len(values); index3++ {
+				value3 := values[index3]
 				if value1+value2+value3 == 2020 {
 					return value1 * value2 * value3
 				}
