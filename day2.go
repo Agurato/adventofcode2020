@@ -7,7 +7,7 @@ import (
 )
 
 // Day2 Day 2
-func Day2() {
+func (aoc AOC) Day2() {
 	values, err := ReadLines("inputs/day2.txt")
 	if err != nil {
 		panic(err)
