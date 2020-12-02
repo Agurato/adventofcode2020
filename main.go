@@ -7,7 +7,8 @@ import (
 )
 
 func main() {
-	Day1()
+	// Day1()
+	Day2()
 }
 
 // ReadLines returns slice of the file's lines

@@ -1,15 +1,21 @@
 package main
 
-// DayPart1 Day  part 1
-func DayPart1() {
-	lines, err := ReadLines("input/day1.txt")
+import "fmt"
+
+// Day Day
+func Day() {
+	values, err := ReadLines("inputs/day.txt")
 	if err != nil {
 		panic(err)
 	}
-	print(lines)
+	fmt.Println(dayPart1(values))
+	fmt.Println(dayPart2(values))
 }
 
-// DayPart2 Day  part 1
-func DayPart2() {
+func dayPart1(values []string) int {
+	return 0
+}
 
+func dayPart2(values []string) int {
+	return 0
 }
