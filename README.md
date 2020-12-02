@@ -2,6 +2,8 @@
 
 ## Benchmarks
 
+These are the benchmarks I ran with my inputs
+
 ### Day 1
 ```
 goos: windows
@@ -18,8 +20,9 @@ ok      Agurato/adventofcode2020    2.682s
 goos: windows
 goarch: amd64
 pkg: Agurato/adventofcode2020
-BenchmarkDay2Part1-6           1689        669053 ns/op      165919 B/op        2040 allocs/op
-BenchmarkDay2Part2-6           1903        648975 ns/op      165608 B/op        2040 allocs/op
+BenchmarkDay2Part1-6   	    5713	    202171 ns/op	   64011 B/op	    1000 allocs/op
+BenchmarkDay2Part2-6   	    5454	    186835 ns/op	   64011 B/op	    1000 allocs/op
 PASS
-ok      Agurato/adventofcode2020    2.664s
+ok  	Agurato/adventofcode2020	2.394s
+
 ```
