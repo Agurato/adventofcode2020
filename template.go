@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 // Day Day
-func Day() {
+func (aoc AOC) Day() {
 	values, err := ReadLines("inputs/day.txt")
 	if err != nil {
 		panic(err)
