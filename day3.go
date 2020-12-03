@@ -55,13 +55,14 @@ func day3Part2(values []string) int {
 
 	var wg sync.WaitGroup
 	trees := make(chan int, len(slopes))
+	valuesLen := len(values)
 	for _, slope := range slopes {
 		wg.Add(1)
 		go func(slope Slope) {
 			defer wg.Done()
 			treeCount := 0
-			for rowIndex, row := range values {
-				if rowIndex%slope.down == 0 && row[(rowIndex*slope.right/slope.down)%rowSize] == '#' {
+			for rowIndex := 0; rowIndex < valuesLen; rowIndex += slope.down {
+				if values[rowIndex][(rowIndex*slope.right/slope.down)%rowSize] == '#' {
 					treeCount++
 				}
 			}
