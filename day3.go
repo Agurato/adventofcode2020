@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+)
 
 // Day3 Day 3
 func (aoc AOC) Day3() {
@@ -50,25 +53,34 @@ func day3Part2(values []string) int {
 	}
 	rowSize := len(values[0])
 
-	for rowIndex, row := range values {
-		for slopeI, slope := range slopes {
-			if rowIndex%slope.down == 0 && row[(rowIndex*slope.right/slope.down)%rowSize] == '#' {
-				slopes[slopeI].trees++
+	var wg sync.WaitGroup
+	trees := make(chan int, len(slopes))
+	for _, slope := range slopes {
+		wg.Add(1)
+		go func(slope Slope) {
+			defer wg.Done()
+			treeCount := 0
+			for rowIndex, row := range values {
+				if rowIndex%slope.down == 0 && row[(rowIndex*slope.right/slope.down)%rowSize] == '#' {
+					treeCount++
+				}
 			}
-		}
+			trees <- treeCount
+		}(slope)
 	}
+	wg.Wait()
+	close(trees)
 
 	res := 1
-	for _, slope := range slopes {
-		res *= slope.trees
+	for hits := range trees {
+		res *= hits
 	}
 
 	return res
 }
 
-// Slope contains the slope parameters and number of trees
+// Slope contains the slope parameters
 type Slope struct {
 	right int
 	down  int
-	trees int
 }
