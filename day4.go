@@ -18,24 +18,20 @@ func (aoc AOC) Day4() {
 }
 
 func day4Part1(values []string) int {
-	var newLines []string
-	passport := ""
+	count := 0
+	fieldNb := 0
 	for _, line := range values {
 		if line == "" {
-			newLines = append(newLines, passport)
-			passport = ""
+			if fieldNb == 7 {
+				count++
+			}
+			fieldNb = 0
 			continue
 		}
-		passport += line + " "
+		fieldNb += strings.Count(line, ":") - strings.Count(line, "cid")
 	}
-	newLines = append(newLines, passport)
-
-	count := 0
-	for _, line := range newLines {
-		colonNumber := strings.Count(line, ":")
-		if colonNumber == 8 || (colonNumber == 7 && !strings.Contains(line, "cid")) {
-			count++
-		}
+	if fieldNb == 7 {
+		count++
 	}
 
 	return count
@@ -54,6 +50,11 @@ func day4Part2(lines []string) int {
 			if isValid && fieldNb == 7 {
 				count++
 			}
+			isValid = true
+			fieldNb = 0
+			continue
+		}
+		if !isValid {
 			isValid = true
 			fieldNb = 0
 			continue
