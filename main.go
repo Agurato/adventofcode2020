@@ -25,8 +25,8 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Challenge number should be between 1 and 25\n")
 		os.Exit(1)
 	}
-	aoc := AOC{}
 
+	aoc := AOC{}
 	challenge := reflect.ValueOf(aoc).MethodByName("Day" + os.Args[1])
 	var emptyMethod reflect.Value
 	if challenge == emptyMethod {

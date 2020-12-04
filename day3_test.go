@@ -11,8 +11,8 @@ func TestDay3(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	assert.Equal(t, day3Part1(values), 198)
-	assert.Equal(t, day3Part2(values), 5140884672)
+	assert.Equal(t, 198, day3Part1(values))
+	assert.Equal(t, 5140884672, day3Part2(values))
 }
 
 func BenchmarkDay3Part1(b *testing.B) {
