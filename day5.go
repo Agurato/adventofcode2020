@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"sort"
 )
 
 // Day5 Day 5
@@ -28,19 +27,20 @@ func day5Part1(values []string) int {
 }
 
 func day5Part2(values []string) int {
-	var seats []int
+	// minSeat := 1023
+	var usedSeats [1023]bool
 	for _, line := range values {
-		seats = append(seats, getSeatID(line))
+		usedSeats[getSeatID(line)] = true
 	}
-	sort.Ints(seats)
-	seatsLen := len(seats)
-	prev := seats[0]
-	for seatI := 1; seatI < seatsLen; seatI++ {
-		seat := seats[seatI]
-		if seat != prev+1 {
-			return seat - 1
+	start := false
+	for i := 0; i < 1023; i++ {
+		if !start {
+			if usedSeats[i] {
+				start = true
+			}
+		} else if !usedSeats[i] {
+			return i
 		}
-		prev = seat
 	}
 
 	return 0
