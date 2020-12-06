@@ -1,11 +1,12 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"reflect"
 	"strconv"
+	"strings"
 )
 
 // AOC contains method for all challenges
@@ -38,36 +39,35 @@ func main() {
 
 // ReadLines returns slice of the file's lines
 func ReadLines(path string) ([]string, error) {
-	file, err := os.Open(path)
+	content, err := ioutil.ReadFile(path)
 	if err != nil {
 		return nil, err
 	}
-	defer file.Close()
+	return strings.Split(strings.ReplaceAll(string(content), "\r", ""), "\n"), nil
+}
 
-	var lines []string
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		lines = append(lines, scanner.Text())
+// ReadLinesSep returns slice of the file's lines, using a custom separator
+func ReadLinesSep(path string, separator string) ([]string, error) {
+	content, err := ioutil.ReadFile(path)
+	if err != nil {
+		return nil, err
 	}
-	return lines, scanner.Err()
+	return strings.Split(strings.ReplaceAll(string(content), "\r", ""), separator), nil
 }
 
 // ReadLinesToInt returns slice of the file's lines converted to integers
 func ReadLinesToInt(path string) ([]int, error) {
-	file, err := os.Open(path)
+	lines, err := ReadLines(path)
 	if err != nil {
 		return nil, err
 	}
-	defer file.Close()
-
-	var lines []int
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		val, err := strconv.Atoi(scanner.Text())
+	var intLines []int
+	for _, line := range lines {
+		intVal, err := strconv.Atoi(line)
 		if err != nil {
-			panic(err)
+			return nil, err
 		}
-		lines = append(lines, val)
+		intLines = append(intLines, intVal)
 	}
-	return lines, scanner.Err()
+	return intLines, err
 }

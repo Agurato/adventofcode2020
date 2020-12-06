@@ -58,3 +58,14 @@ BenchmarkDay5Part2-6   	   33897	     35873 ns/op	       1 B/op	       0 allocs/
 PASS
 ok  	Agurato/adventofcode2020	3.240s
 ```
+
+### Day 6
+```
+goos: windows
+goarch: amd64
+pkg: Agurato/adventofcode2020
+BenchmarkDay6Part1-6   	   14527	     82539 ns/op	       5 B/op	       0 allocs/op
+BenchmarkDay6Part2-6   	    1250	    970377 ns/op	   34815 B/op	    2172 allocs/op
+PASS
+ok  	Agurato/adventofcode2020	3.512s
+```

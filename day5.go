@@ -27,7 +27,6 @@ func day5Part1(values []string) int {
 }
 
 func day5Part2(values []string) int {
-	// minSeat := 1023
 	var usedSeats [1023]bool
 	for _, line := range values {
 		usedSeats[getSeatID(line)] = true
