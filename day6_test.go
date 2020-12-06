@@ -16,14 +16,14 @@ func TestDay6(t *testing.T) {
 }
 
 func BenchmarkDay6Part1(b *testing.B) {
-	values, _ := ReadLines("inputs/day6.txt")
+	values, _ := ReadLinesSep("inputs/day6.txt", "\n\n")
 	for i := 0; i < b.N; i++ {
 		day6Part1(values)
 	}
 }
 
 func BenchmarkDay6Part2(b *testing.B) {
-	values, _ := ReadLines("inputs/day6.txt")
+	values, _ := ReadLinesSep("inputs/day6.txt", "\n\n")
 	for i := 0; i < b.N; i++ {
 		day6Part2(values)
 	}

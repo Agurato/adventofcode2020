@@ -36,17 +36,18 @@ func day6Part1(values []string) int {
 func day6Part2(values []string) int {
 	sum := 0
 	for _, group := range values {
-		var answers [26]bool
 		everyone := strings.Split(group, "\n")
 		everyoneLen := len(everyone)
-		for answerI := range answers {
-			count := 0
-			for _, someone := range everyone {
-				if strings.Contains(someone, string(rune(answerI+97))) {
-					count++
+		for _, answer := range everyone[0] {
+			allYes := true
+			for someoneI := 1; someoneI < everyoneLen; someoneI++ {
+				someone := everyone[someoneI]
+				if !strings.Contains(someone, string(rune(answer))) {
+					allYes = false
+					break
 				}
 			}
-			if count == everyoneLen {
+			if allYes {
 				sum++
 			}
 		}
