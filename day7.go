@@ -17,7 +17,7 @@ func (aoc AOC) Day7() {
 }
 
 func day7Part1(values []string) int {
-	bags := make(map[string]Bag)
+	bags := make(map[string][]string)
 
 	for _, line := range values {
 		bagRules := strings.Split(line, " bag")
@@ -34,10 +34,7 @@ func day7Part1(values []string) int {
 			contains = append(contains, info[2])
 		}
 
-		bags[bagRules[0]] = Bag{
-			color:    bagRules[0],
-			contains: contains,
-		}
+		bags[bagRules[0]] = contains
 	}
 
 	parents := make(map[string]bool)
@@ -67,7 +64,6 @@ func day7Part2(values []string) int {
 		}
 
 		bags[bagRules[0]] = Bag{
-			color:      bagRules[0],
 			contains:   contains,
 			containsNb: containsNb,
 		}
@@ -78,7 +74,6 @@ func day7Part2(values []string) int {
 
 // Bag contains other bags
 type Bag struct {
-	color      string
 	contains   []string
 	containsNb []int
 }
@@ -92,9 +87,12 @@ func stringInSlice(a string, slice []string) bool {
 	return false
 }
 
-func bagsContaining(bags map[string]Bag, colorSearch string, parents map[string]bool) {
+func bagsContaining(bags map[string][]string, colorSearch string, parents map[string]bool) {
 	for color, bag := range bags {
-		if stringInSlice(colorSearch, bag.contains) {
+		if stringInSlice(colorSearch, bag) {
+			if _, ok := parents[color]; ok {
+				continue
+			}
 			parents[color] = true
 			bagsContaining(bags, color, parents)
 		}
