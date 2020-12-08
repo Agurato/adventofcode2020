@@ -42,7 +42,7 @@ func day7Part1(values []string) int {
 
 	parents := make(map[string]bool)
 	parents["shiny gold"] = true
-	oldLength := -1
+	oldLength := 0
 	for len(parents) != oldLength {
 		oldLength = len(parents)
 		for color := range parents {
