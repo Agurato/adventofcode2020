@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/thoas/go-funk"
 )
 
 // Day9 Day 9
@@ -73,7 +71,16 @@ func day9Part2(values []int) int {
 		contiguous = nil
 	}
 
-	return funk.MinInt(contiguous).(int) + funk.MaxInt(contiguous).(int)
+	min, max := invalid, 0
+	for _, val := range contiguous {
+		if val > max {
+			max = val
+		}
+		if val < min {
+			min = val
+		}
+	}
+	return min + max
 }
 
 func inSlice(value int, slice []int) bool {
