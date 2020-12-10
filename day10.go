@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 	"sort"
 )
 
@@ -57,23 +56,4 @@ func day10Part2(values []int) int {
 	}
 
 	return ways[len(ways)-1]
-}
-
-func day10Part2Old(values []int) int {
-	sort.Ints(values)
-	values = append([]int{0}, values...)
-	values = append(values, values[len(values)-1]+3)
-
-	diff1 := 0
-	lenValues := len(values)
-	for valueI := 1; valueI < lenValues-1; valueI++ {
-		diffBefore := values[valueI] - values[valueI-1]
-		diffAfter := values[valueI+1] - values[valueI]
-		if diffBefore == 1 && diffAfter < 3 {
-			diff1++
-			fmt.Printf("Can remove %d\n", values[valueI])
-		}
-	}
-
-	return int(math.Pow(float64(2), float64(diff1)))
 }
