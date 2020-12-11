@@ -88,8 +88,9 @@ func day11Part2(values []string) int {
 					continue
 				}
 				occupiedDir := 0
+				currPos := Coord{rowI, columnI}
 				for _, dir := range directions {
-					if !freeSeatInDirection(grid, Coord{rowI, columnI}, dir) {
+					if !freeSeatInDirection(grid, currPos, dir) {
 						occupiedDir++
 					}
 				}
