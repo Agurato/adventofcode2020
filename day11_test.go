@@ -12,7 +12,7 @@ func TestDay11(t *testing.T) {
 		panic(err)
 	}
 	assert.Equal(t, 2166, day11Part1(values))
-	assert.Equal(t, 0, day11Part2(values))
+	assert.Equal(t, 1955, day11Part2(values))
 }
 
 func BenchmarkDay11Part1(b *testing.B) {
