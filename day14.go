@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"strconv"
 	"strings"
 )
@@ -26,17 +27,14 @@ func day14Part1(values []string) int {
 		} else {
 			num, _ := strconv.Atoi(info[1])
 			numString := fmt.Sprintf("%036b", num)
-			out := ""
+			res := 0
 			for maskI, maskV := range mask {
-				if maskV == 'X' {
-					out += string(numString[maskI])
-				} else {
-					out += string(maskV)
+				if (maskV == 'X' && numString[maskI] == '1') || maskV == '1' {
+					res += int(math.Pow(2, float64(35-maskI)))
 				}
 			}
-			result, _ := strconv.ParseUint(out, 2, 64)
 			address, _ := strconv.Atoi(info[0][4 : len(info[0])-1])
-			mem[address] = result
+			mem[address] = uint64(res)
 		}
 	}
 	var sum uint64
