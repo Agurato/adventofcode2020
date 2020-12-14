@@ -64,7 +64,7 @@ func day14Part2(values []string) int {
 					lenAllAddresses := len(allAddresses)
 					allAddresses = append(allAddresses, allAddresses...)
 					add := int(math.Pow(2, float64(35-maskI)))
-					for i := lenAllAddresses; i < 2*lenAllAddresses; i++ {
+					for i := 0; i < lenAllAddresses; i++ {
 						allAddresses[i] += add
 					}
 				case '1':
