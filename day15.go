@@ -16,13 +16,11 @@ func (aoc AOC) Day15() {
 	fmt.Println(day15Part2(values))
 }
 
-func day15Part1(values []string) int {
+func run(inputs []int, stop int) int {
 	numbers := make(map[int]int)
 	lastNum := 0
-	inputs := strings.Split(values[0], ",")
 	count := len(inputs) - 1
-	for i, input := range inputs {
-		num, _ := strconv.Atoi(input)
+	for i, num := range inputs {
 		lastNum = num
 		if i == count {
 			break
@@ -30,7 +28,7 @@ func day15Part1(values []string) int {
 		numbers[num] = i
 	}
 
-	for count < 2019 {
+	for count < stop {
 		if lastDate, ok := numbers[lastNum]; ok {
 			newNum := count - lastDate
 			numbers[lastNum] = count
@@ -45,31 +43,20 @@ func day15Part1(values []string) int {
 	return lastNum
 }
 
+func day15Part1(values []string) int {
+	split := strings.Split(values[0], ",")
+	inputs := make([]int, len(split))
+	for i, spl := range split {
+		inputs[i], _ = strconv.Atoi(spl)
+	}
+	return run(inputs, 2020-1)
+}
+
 func day15Part2(values []string) int {
-	numbers := make(map[int]int)
-	lastNum := 0
-	inputs := strings.Split(values[0], ",")
-	count := len(inputs) - 1
-	for i, input := range inputs {
-		num, _ := strconv.Atoi(input)
-		lastNum = num
-		if i == count {
-			break
-		}
-		numbers[num] = i
+	split := strings.Split(values[0], ",")
+	inputs := make([]int, len(split))
+	for i, spl := range split {
+		inputs[i], _ = strconv.Atoi(spl)
 	}
-
-	for count < 29999999 {
-		if lastDate, ok := numbers[lastNum]; ok {
-			newNum := count - lastDate
-			numbers[lastNum] = count
-			lastNum = newNum
-		} else {
-			numbers[lastNum] = count
-			lastNum = 0
-		}
-		count++
-	}
-
-	return lastNum
+	return run(inputs, 30000000-1)
 }
