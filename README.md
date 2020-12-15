@@ -163,8 +163,8 @@ ok  	Agurato/adventofcode2020	3.349s
 goos: windows
 goarch: amd64
 pkg: Agurato/adventofcode2020
-BenchmarkDay15Part1-6   	   16347	     71757 ns/op	   22498 B/op	      37 allocs/op
-BenchmarkDay15Part2-6   	       1	2147959200 ns/op	352383288 B/op	  153832 allocs/op
+BenchmarkDay15Part1-6   	  214285	      5894 ns/op	   16560 B/op	       3 allocs/op
+BenchmarkDay15Part2-6   	       2	 625984250 ns/op	240001908 B/op	       6 allocs/op
 PASS
-ok  	Agurato/adventofcode2020	4.262s
+ok  	Agurato/adventofcode2020	3.446s
 ```
