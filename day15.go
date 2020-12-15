@@ -17,6 +17,8 @@ func (aoc AOC) Day15() {
 }
 
 func run(inputs []int, stop int) int {
+	// Using a slice is waaaayyyyy faster than using a map
+	// Thank you akkes!
 	numbers := make([]int, stop)
 	lastNum := 0
 	count := len(inputs)
