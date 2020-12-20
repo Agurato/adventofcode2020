@@ -39,9 +39,7 @@ func day18Part2(values []string) int {
 			numOpen := 0
 			for j := i - 1; j >= 0; j-- {
 				numOpen += strings.Count(lineSplit[j], ")")
-				if numOpen > 0 {
-					numOpen -= strings.Count(lineSplit[j], "(")
-				}
+				numOpen -= strings.Count(lineSplit[j], "(")
 				if numOpen <= 0 {
 					lineSplit[j] = "(" + lineSplit[j]
 					break
@@ -50,9 +48,7 @@ func day18Part2(values []string) int {
 			numOpen = 0
 			for j := i + 1; j < len(lineSplit); j++ {
 				numOpen += strings.Count(lineSplit[j], "(")
-				if numOpen > 0 {
-					numOpen -= strings.Count(lineSplit[j], ")")
-				}
+				numOpen -= strings.Count(lineSplit[j], ")")
 				if numOpen <= 0 {
 					lineSplit[j] = lineSplit[j] + ")"
 					break
